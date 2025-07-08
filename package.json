@@ -5,13 +5,14 @@
   "keywords": [
     "social media",
     "scheduling tool",
-    "social media scheduling tool"
+    "social media scheduling tool",
+    "n8n-community-node-package"
   ],
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Nevo David",
+    "email": "nevo@postiz.com"
   },
   "repository": {
     "type": "git",
