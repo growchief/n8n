@@ -28,7 +28,7 @@
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
-    "publish-n8n": "cd dist && npm publish --access public"
+    "publish-n8n": "cd dist && pnpm publish --access public"
   },
   "files": [
     "dist"
