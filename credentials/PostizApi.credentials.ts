@@ -8,6 +8,7 @@ import {
 export class PostizApi implements ICredentialType {
 	name = 'postizApi';
 	displayName = 'Postiz API';
+	documentationUrl = 'https://docs.postiz.com/public-api';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',

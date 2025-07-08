@@ -373,6 +373,7 @@ export class Postiz implements INodeType {
 				displayName: 'Month',
 				name: 'month',
 				type: 'number',
+				default: '0',
 				typeOptions: {
 					minValue: 1,
 					maxValue: 12,
