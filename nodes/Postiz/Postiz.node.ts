@@ -373,7 +373,7 @@ export class Postiz implements INodeType {
 				displayName: 'Month',
 				name: 'month',
 				type: 'number',
-				default: '0',
+				default: (new Date().getMonth() + 1) as number,
 				typeOptions: {
 					minValue: 1,
 					maxValue: 12,
@@ -383,7 +383,6 @@ export class Postiz implements INodeType {
 						operation: ['getPosts'],
 					},
 				},
-				default: new Date().getMonth() + 1,
 				description: 'Month number for filtering posts (1-12)',
 			},
 			{
