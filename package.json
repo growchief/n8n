@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-postiz",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "The ultimate social media scheduling tool",
   "keywords": [
     "social media",
@@ -9,7 +9,7 @@
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://postiz.com",
   "author": {
     "name": "Nevo David",
     "email": "nevo@postiz.com"
