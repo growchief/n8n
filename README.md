@@ -12,7 +12,7 @@ npm init -y
 
 Then install the Postiz node package:
 ```
-npm install @postiz/n8n
+npm install n8n-nodes-postiz
 ```
 
 ## For docker users
@@ -24,7 +24,7 @@ npm init -y
 
 install the Postiz node package:
 ```bash
-npm install @postiz/n8n
+npm install n8n-nodes-postiz
 ```
 
 When you run the n8n docker container, mount the custom nodes folder to the container:
