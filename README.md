@@ -33,5 +33,9 @@ Add the following environment variable to your docker run command:
 N8N_CUSTOM_EXTENSIONS="~/n8n-custom-nodes"
 ```
 
+If you are self-hosting Postiz on port 5000, your host must end with /api for example:
+```
+http://yourdomain.com/api
+```
 
 Alternatively, you can use the SDK with curl, check the [Postiz API documentation](https://docs.postiz.com/public-api) for more information.
