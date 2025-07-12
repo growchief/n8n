@@ -1,5 +1,5 @@
 # Introduction
-Postiz is a powerful social media scheduling tool that allows you to manage your social media accounts efficiently.
+[Postiz](https://postiz.com) is a powerful social media scheduling tool that allows you to manage your social media accounts efficiently.
 
 You can use n8n to automate your workflow and post to multiple social media platforms at once.
 
@@ -7,10 +7,6 @@ You can [self-host](https://docs.postiz.com/introduction) Postiz or use our [clo
 For example: Load news from Reddit >> Make it a video with AI >> Post it to your social media accounts.
 
 Postiz supports: X, LinkedIn, BlueSky, Instagram, Facebook, TikTok, YouTube, Pinterest, Dribbble, Telegram, Discord, Slack, Threads, Lemmy, Reddit, Mastodon, Warpcast, Nostr and VK.
-
-## Postiz N8N custom node
-
-This is the N8N custom node for [Postiz](https://postiz.com).
 
 ## Installation (non-docker)
 Go to your n8n installation usually located at `~/.n8n`.
