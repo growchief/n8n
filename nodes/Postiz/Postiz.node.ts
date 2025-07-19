@@ -4,10 +4,10 @@ import type {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	IBinaryData,
 } from 'n8n-workflow';
 import { NodeConnectionType } from 'n8n-workflow';
 import { postizApiRequest } from './GenericFunctions';
-import FormData from 'form-data';
 
 export class Postiz implements INodeType {
 	description: INodeTypeDescription = {
@@ -157,7 +157,8 @@ export class Postiz implements INodeType {
 						],
 					},
 				],
-				description: 'Custom parameters for video generation (e.g., prompt: "description", voice: voice-ID, images: [{"ID":"...","path":"..."}])',
+				description:
+					'Custom parameters for video generation (e.g., prompt: "description", voice: voice-ID, images: [{"ID":"...","path":"..."}])',
 			},
 			// Video Function parameters
 			{
@@ -711,13 +712,14 @@ export class Postiz implements INodeType {
 
 				if (operation === 'uploadFile') {
 					const binaryPropertyName = this.getNodeParameter('binaryPropertyName', i) as string;
-					const extension = this.getNodeParameter('extension', i) as string;
+					const bin = items[i].binary?.[binaryPropertyName] as IBinaryData | undefined;
+					const buf = await this.helpers.getBinaryDataBuffer(i, binaryPropertyName);
+					const filename = bin?.fileName ?? `file_${i}_${binaryPropertyName}`;
+					const contentType = bin?.mimeType ?? 'image/png';
+					const blob = new Blob([buf], { type: contentType });
 
 					const formData = new FormData();
-					formData.append('file', Buffer.from(binaryPropertyName, 'base64'), {
-						filename: `file.${extension}`,
-					});
-
+					formData.append('file', blob, filename);
 					responseData = await postizApiRequest.call(this, 'POST', '/upload', formData);
 				}
 
@@ -759,7 +761,11 @@ export class Postiz implements INodeType {
 				if (operation === 'videoFunction') {
 					const functionName = this.getNodeParameter('functionName', i) as string;
 					const identifier = this.getNodeParameter('identifier', i) as string;
-					const additionalParametersParam = this.getNodeParameter('additionalParameters', i, {}) as any;
+					const additionalParametersParam = this.getNodeParameter(
+						'additionalParameters',
+						i,
+						{},
+					) as any;
 
 					const body: any = {
 						functionName,
@@ -767,7 +773,10 @@ export class Postiz implements INodeType {
 					};
 
 					// Add additional parameters dynamically
-					if (additionalParametersParam.parameter && additionalParametersParam.parameter.length > 0) {
+					if (
+						additionalParametersParam.parameter &&
+						additionalParametersParam.parameter.length > 0
+					) {
 						additionalParametersParam.parameter.forEach((param: any) => {
 							body[param.key] = param.value;
 						});

@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-postiz",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The ultimate social media scheduling tool",
   "keywords": [
     "social media",
@@ -53,8 +53,5 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "form-data": "^4.0.3"
   }
 }
