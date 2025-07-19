@@ -1,10 +1,5 @@
-import type {
-	IExecuteFunctions,
-	IDataObject,
-	INodeExecutionData,
-	INodeType,
-	INodeTypeDescription,
-	IBinaryData,
+import {
+	IExecuteFunctions, IDataObject, INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError,
 } from 'n8n-workflow';
 import { NodeConnectionType } from 'n8n-workflow';
 import { postizApiRequest } from './GenericFunctions';
@@ -573,7 +568,7 @@ export class Postiz implements INodeType {
 			// UploadFile parameters
 			{
 				displayName: 'Binary Property',
-				name: 'binaryPropertyName',
+				name: 'binaryProperty',
 				type: 'string',
 				displayOptions: {
 					show: {
@@ -698,15 +693,24 @@ export class Postiz implements INodeType {
 				}
 
 				if (operation === 'uploadFile') {
-					const binaryPropertyName = this.getNodeParameter('binaryPropertyName', i) as string;
-					const bin = items[i].binary?.[binaryPropertyName] as IBinaryData | undefined;
-					const buf = await this.helpers.getBinaryDataBuffer(i, binaryPropertyName);
-					const filename = bin?.fileName ?? `file_${i}_${binaryPropertyName}`;
-					const contentType = bin?.mimeType ?? 'image/png';
-					const blob = new Blob([buf], { type: contentType });
+					const dataBinary = this.getNodeParameter('binaryProperty', i, 'data') as any;
+					if (
+						!dataBinary?.data ||
+						!dataBinary.data.data ||
+						!dataBinary.data.mimeType ||
+						!dataBinary.data.fileName
+					) {
+						throw new NodeOperationError(
+							this.getNode(),
+							`Item is not of type "binary" or does not contain the expected properties: data, mimeType, fileName`,
+							{ itemIndex: i },
+						);
+					}
+
+					const blob = new Blob([Buffer.from(dataBinary.data.data, 'base64')], { type: dataBinary.data.mimeType });
 
 					const formData = new FormData();
-					formData.append('file', blob, filename);
+					formData.append('file', blob, dataBinary.data.fileName);
 					responseData = await postizApiRequest.call(this, 'POST', '/upload', formData);
 				}
 
@@ -779,7 +783,6 @@ export class Postiz implements INodeType {
 
 				returnData.push(...executionData);
 			} catch (error) {
-				console.log(error);
 				// if (this.continueOnFail()) {
 				const executionErrorData = this.helpers.constructExecutionMetaData(
 					this.helpers.returnJsonArray({ error: error?.description || error?.message || error }),
