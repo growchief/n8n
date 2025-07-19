@@ -584,19 +584,6 @@ export class Postiz implements INodeType {
 				required: true,
 				description: 'Name of the binary property that contains the file data',
 			},
-			{
-				displayName: 'Extension (Png / Jpg / Mp4 / etc.)',
-				name: 'extension',
-				type: 'string',
-				displayOptions: {
-					show: {
-						operation: ['uploadFile'],
-					},
-				},
-				default: '',
-				required: true,
-				description: 'Extension of the file being uploaded (e.g., png, jpg, mp4)',
-			},
 			// DeletePost parameters
 			{
 				displayName: 'Post ID',
