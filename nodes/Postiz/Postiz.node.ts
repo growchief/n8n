@@ -464,94 +464,30 @@ export class Postiz implements INodeType {
 			},
 			// GetPosts parameters
 			{
-				displayName: 'Week',
-				name: 'week',
-				type: 'number',
-				typeOptions: {
-					minValue: 1,
-					maxValue: 52,
-				},
+				displayName: 'Start Date',
+				name: 'startDate',
+				type: 'dateTime',
 				displayOptions: {
 					show: {
 						operation: ['getPosts'],
 					},
 				},
-				default: 1,
-				description: 'Week number for filtering posts (1-52)',
+				default: '',
+				required: true,
+				description: 'Start date for filtering posts (UTC)',
 			},
 			{
-				displayName: 'Day',
-				name: 'day',
-				type: 'number',
-				typeOptions: {
-					minValue: 0,
-					maxValue: 6,
-				},
+				displayName: 'End Date',
+				name: 'endDate',
+				type: 'dateTime',
 				displayOptions: {
 					show: {
 						operation: ['getPosts'],
 					},
 				},
-				default: 0,
-				description: 'Day number for filtering posts (0-6, where 0 is Sunday)',
-			},
-			{
-				displayName: 'Display',
-				name: 'display',
-				type: 'options',
-				displayOptions: {
-					show: {
-						operation: ['getPosts'],
-					},
-				},
-				options: [
-					{
-						name: 'Day',
-						value: 'day',
-					},
-					{
-						name: 'Week',
-						value: 'week',
-					},
-					{
-						name: 'Month',
-						value: 'month',
-					},
-				],
-				default: 'day',
-				description: 'Display mode for posts',
-			},
-			{
-				displayName: 'Month',
-				name: 'month',
-				type: 'number',
-				default: 5,
-				typeOptions: {
-					minValue: 1,
-					maxValue: 12,
-				},
-				displayOptions: {
-					show: {
-						operation: ['getPosts'],
-					},
-				},
-				description: 'Month number for filtering posts (1-12)',
-			},
-			{
-				displayName: 'Year',
-				name: 'year',
-				type: 'number',
-				typeOptions: {
-					minValue: 2022,
-					maxValue: new Date().getFullYear() + 10,
-				},
-				displayOptions: {
-					show: {
-						operation: ['getPosts'],
-					},
-				},
-				default: new Date().getFullYear(),
-				description: 'Year for filtering posts',
+				default: '',
+				required: true,
+				description: 'End date for filtering posts (UTC)',
 			},
 			{
 				displayName: 'Customer',
@@ -563,7 +499,7 @@ export class Postiz implements INodeType {
 					},
 				},
 				default: '',
-				description: 'Customer ID for filtering posts',
+				description: 'Customer ID for filtering posts (optional)',
 			},
 			// UploadFile parameters
 			{
@@ -673,19 +609,13 @@ export class Postiz implements INodeType {
 				}
 
 				if (operation === 'getPosts') {
-					const week = this.getNodeParameter('week', i) as number;
-					const day = this.getNodeParameter('day', i) as number;
-					const display = this.getNodeParameter('display', i) as string;
-					const month = this.getNodeParameter('month', i) as number;
-					const year = this.getNodeParameter('year', i) as number;
+					const startDate = this.getNodeParameter('startDate', i) as string;
+					const endDate = this.getNodeParameter('endDate', i) as string;
 					const customer = this.getNodeParameter('customer', i) as string;
 
 					const query = {
-						week,
-						day,
-						display,
-						month,
-						year,
+						startDate,
+						endDate,
 						...(customer && { customer }),
 					};
 
