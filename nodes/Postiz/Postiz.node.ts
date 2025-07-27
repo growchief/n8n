@@ -464,7 +464,7 @@ export class Postiz implements INodeType {
 			},
 			// GetPosts parameters
 			{
-				displayName: 'Start Date',
+				displayName: 'Start Date (UTC)',
 				name: 'startDate',
 				type: 'dateTime',
 				displayOptions: {
@@ -477,7 +477,7 @@ export class Postiz implements INodeType {
 				description: 'Start date for filtering posts (UTC)',
 			},
 			{
-				displayName: 'End Date',
+				displayName: 'End Date (UTC)',
 				name: 'endDate',
 				type: 'dateTime',
 				displayOptions: {
