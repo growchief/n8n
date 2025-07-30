@@ -11,7 +11,9 @@ Postiz supports: X, LinkedIn, BlueSky, Instagram, Facebook, TikTok, YouTube, Pin
 ---
 
 > Note
-> If you are self-hosting Postiz on port 5000 (reverse proxy), your host must end with /api for example: http://yourdomain.com/api
+> If you are self-hosting Postiz on port 5000 (reverse proxy),
+> Your host must end with /api for example:
+> http://yourdomain.com/api
 
 Alternatively, you can use the SDK with curl, check the [Postiz API documentation](https://docs.postiz.com/public-api) for more information.
 
