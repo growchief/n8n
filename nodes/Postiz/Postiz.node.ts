@@ -51,7 +51,7 @@ export class Postiz implements INodeType {
 						action: 'Generate videos with AI',
 					},
 					{
-						name: 'Get Integrations',
+						name: 'Get Channels',
 						value: 'getIntegrations',
 						description: 'Get a list of connected channels',
 						action: 'Get a list of connected channels',
@@ -336,12 +336,12 @@ export class Postiz implements INodeType {
 						displayName: 'Post',
 						values: [
 							{
-								displayName: 'Integration ID',
+								displayName: 'Channel ID',
 								name: 'integrationId',
 								type: 'string',
 								default: '',
 								required: true,
-								description: 'ID of the integration/channel',
+								description: 'ID of the channel (you can get from the get channels operation or from the Postiz UI)',
 							},
 							{
 								displayName: 'Group',
