@@ -8,7 +8,19 @@ For example: Load news from Reddit >> Make it a video with AI >> Post it to your
 
 Postiz supports: X, LinkedIn, BlueSky, Instagram, Facebook, TikTok, YouTube, Pinterest, Dribbble, Telegram, Discord, Slack, Threads, Lemmy, Reddit, Mastodon, Warpcast, Nostr and VK.
 
-## Installation (non-docker)
+## Installation (quick installation)
+
+- Click on settings
+- Click on Community Nodes
+- Click on Install
+- Add "n8n-nodes-postiz" to "npm Package Name"
+- Click on Install
+
+![community-node.png](community-node.png)
+
+---
+
+## Installation (non-docker - manual installation)
 Go to your n8n installation usually located at `~/.n8n`.
 Check if you have the `custom` folder, if not create it and create a new package.json file inside.
 ```bash
@@ -21,7 +33,7 @@ Then install the Postiz node package:
 npm install n8n-nodes-postiz
 ```
 
-## For docker users
+## For docker users (manual installation)
 Create a new folder on your host machine, for example `~/n8n-custom-nodes`, and create a new package.json file inside:
 ```bash
 mkdir -p ~/n8n-custom-nodes
