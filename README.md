@@ -8,6 +8,15 @@ For example: Load news from Reddit >> Make it a video with AI >> Post it to your
 
 Postiz supports: X, LinkedIn, BlueSky, Instagram, Facebook, TikTok, YouTube, Pinterest, Dribbble, Telegram, Discord, Slack, Threads, Lemmy, Reddit, Mastodon, Warpcast, Nostr and VK.
 
+---
+
+> Note
+> If you are self-hosting Postiz on port 5000 (reverse proxy), your host must end with /api for example: http://yourdomain.com/api
+
+Alternatively, you can use the SDK with curl, check the [Postiz API documentation](https://docs.postiz.com/public-api) for more information.
+
+---
+
 ## Installation (quick installation)
 
 - Click on settings
@@ -50,10 +59,3 @@ Add the following environment variable to your docker run command:
 ```
 N8N_CUSTOM_EXTENSIONS="~/n8n-custom-nodes"
 ```
-
-If you are self-hosting Postiz on port 5000, your host must end with /api for example:
-```
-http://yourdomain.com/api
-```
-
-Alternatively, you can use the SDK with curl, check the [Postiz API documentation](https://docs.postiz.com/public-api) for more information.
