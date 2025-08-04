@@ -1,5 +1,10 @@
 import {
-	IExecuteFunctions, IDataObject, INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError,
+	IExecuteFunctions,
+	IDataObject,
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
+	NodeOperationError,
 } from 'n8n-workflow';
 import { NodeConnectionType } from 'n8n-workflow';
 import { postizApiRequest } from './GenericFunctions';
@@ -341,7 +346,8 @@ export class Postiz implements INodeType {
 								type: 'string',
 								default: '',
 								required: true,
-								description: 'ID of the channel (you can get from the get channels operation or from the Postiz UI)',
+								description:
+									'ID of the channel (you can get from the get channels operation or from the Postiz UI)',
 							},
 							{
 								displayName: 'Group',
@@ -374,11 +380,81 @@ export class Postiz implements INodeType {
 											},
 											{
 												displayName: 'Value',
-												name: 'value',
+												name: 'stringValue',
 												type: 'string',
+												displayOptions: {
+													show: {
+														valueType: ['string'],
+													},
+												},
 												default: '',
 												required: true,
-												description: 'Setting value',
+												description: 'String value',
+											},
+											{
+												displayName: 'Value',
+												name: 'numberValue',
+												type: 'number',
+												displayOptions: {
+													show: {
+														valueType: ['number'],
+													},
+												},
+												default: 0,
+												required: true,
+												description: 'Number value',
+											},
+											{
+												displayName: 'Value',
+												name: 'booleanValue',
+												type: 'boolean',
+												displayOptions: {
+													show: {
+														valueType: ['boolean'],
+													},
+												},
+												default: false,
+												required: true,
+												description: 'Whether the setting is enabled',
+											},
+											{
+												displayName: 'Value',
+												name: 'jsonValue',
+												type: 'json',
+												displayOptions: {
+													show: {
+														valueType: ['json'],
+													},
+												},
+												default: '',
+												required: true,
+												description: 'JSON value (object or array)',
+											},
+											{
+												displayName: 'Value Type',
+												name: 'valueType',
+												type: 'options',
+												options: [
+													{
+														name: 'String',
+														value: 'string',
+													},
+													{
+														name: 'Number',
+														value: 'number',
+													},
+													{
+														name: 'Boolean',
+														value: 'boolean',
+													},
+													{
+														name: 'JSON',
+														value: 'json',
+													},
+												],
+												default: 'string',
+												required: true,
+												description: 'Type of the setting value',
 											},
 										],
 									},
@@ -568,7 +644,29 @@ export class Postiz implements INodeType {
 
 								if (post.settings?.setting && post.settings.setting.length > 0) {
 									post.settings.setting.forEach((setting: any) => {
-										settings[setting.key] = setting.value;
+										// Determine the actual value based on the selected type
+										let value;
+										switch (setting.valueType) {
+											case 'string':
+												value = setting.stringValue;
+												break;
+											case 'number':
+												value = setting.numberValue;
+												break;
+											case 'boolean':
+												value = setting.booleanValue;
+												break;
+											case 'json':
+												try {
+													value = JSON.parse(setting.jsonValue);
+												} catch {
+													value = setting.jsonValue;
+												}
+												break;
+											default:
+												value = setting.stringValue; // fallback to string
+										}
+										settings[setting.key] = value;
 									});
 								}
 
@@ -637,7 +735,9 @@ export class Postiz implements INodeType {
 						);
 					}
 
-					const blob = new Blob([Buffer.from(dataBinary.data.data, 'base64')], { type: dataBinary.data.mimeType });
+					const blob = new Blob([Buffer.from(dataBinary.data.data, 'base64')], {
+						type: dataBinary.data.mimeType,
+					});
 
 					const formData = new FormData();
 					formData.append('file', blob, dataBinary.data.fileName);
