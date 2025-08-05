@@ -8,6 +8,9 @@ For example: Load news from Reddit >> Make it a video with AI >> Post it to your
 
 Postiz supports: X, LinkedIn, BlueSky, Instagram, Facebook, TikTok, YouTube, Pinterest, Dribbble, Telegram, Discord, Slack, Threads, Lemmy, Reddit, Mastodon, Warpcast, Nostr and VK.
 
+You can learn how to use Postiz + n8n after installation here:
+https://youtu.be/c50u3K3xsCI
+
 ---
 
 > Note
