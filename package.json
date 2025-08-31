@@ -1,22 +1,22 @@
 {
-  "name": "n8n-nodes-postiz",
-  "version": "0.2.12",
-  "description": "The ultimate social media scheduling tool",
+  "name": "n8n-nodes-growchief",
+  "version": "0.0.1",
+  "description": "The ultimate social media automation tool",
   "keywords": [
     "social media",
     "scheduling tool",
-    "social media scheduling tool",
+    "social media automation tool",
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "https://postiz.com",
+  "homepage": "https://growchief.com",
   "author": {
     "name": "Nevo David",
-    "email": "nevo@postiz.com"
+    "email": "nevo@growchief.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gitroomhq/postiz-n8n"
+    "url": "https://github.com/growchief/n8n"
   },
   "engines": {
     "node": ">=20.15"
@@ -37,10 +37,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/PostizApi.credentials.js"
+      "dist/credentials/GrowchiefApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Postiz/Postiz.node.js"
+      "dist/nodes/Growchief/Growchief.node.js"
     ]
   },
   "devDependencies": {

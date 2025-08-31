@@ -5,10 +5,10 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class PostizApi implements ICredentialType {
-	name = 'postizApi';
-	displayName = 'Postiz API';
-	documentationUrl = 'https://docs.postiz.com/public-api';
+export class GrowchiefApi implements ICredentialType {
+	name = 'growchiefApi';
+	displayName = 'Growchief API';
+	documentationUrl = 'https://docs.growchief.com/public-api';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',
@@ -21,7 +21,7 @@ export class PostizApi implements ICredentialType {
 			displayName: 'Host',
 			name: 'host',
 			type: 'string',
-			default: 'https://api.postiz.com',
+			default: 'https://api.growchief.com',
 		},
 	];
 
@@ -40,7 +40,7 @@ export class PostizApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials.host}}',
-			url: '=/public/v1/is-connected',
+			url: '=/public/is-connected',
 		},
 	};
 }

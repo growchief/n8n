@@ -10,7 +10,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
-export async function postizApiRequest(
+export async function growchiefApiRequest(
 	this: IExecuteFunctions | IWebhookFunctions | IHookFunctions | ILoadOptionsFunctions,
 	method: IHttpRequestMethods,
 	resource: string,
@@ -19,10 +19,10 @@ export async function postizApiRequest(
 	query: IDataObject = {},
 	option: IDataObject = {},
 ): Promise<any> {
-	const credentials = await this.getCredentials('postizApi');
+	const credentials = await this.getCredentials('growchiefApi');
 
 	let options: IHttpRequestOptions = {
-		baseURL: credentials.host + '/public/v1' as string,
+		baseURL: credentials.host + '/public' as string,
 		method,
 		body,
 		qs: query,
@@ -32,10 +32,10 @@ export async function postizApiRequest(
 	if (!Object.keys(query).length) {
 		delete options.qs;
 	}
-	
+
 	options = Object.assign({}, options, option);
 	try {
-		return await this.helpers.httpRequestWithAuthentication.call(this, 'postizApi', options);
+		return await this.helpers.httpRequestWithAuthentication.call(this, 'growchiefApi', options);
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}

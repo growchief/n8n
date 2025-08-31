@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.growchief",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Social Media", "Automation"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.growchief.com/public-api"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.growchief.com/public-api"
+			}
+		]
+	}
+}
