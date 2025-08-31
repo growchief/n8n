@@ -55,7 +55,7 @@ export class Growchief implements INodeType {
 			},
 			// Start Workflow parameters
 			{
-				displayName: 'Workflow',
+				displayName: 'Workflow Name or ID',
 				name: 'workflowId',
 				type: 'options',
 				typeOptions: {
@@ -68,7 +68,7 @@ export class Growchief implements INodeType {
 				},
 				default: '',
 				required: true,
-				description: 'Select the workflow to start',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 			},
 			{
 				displayName: 'Organization Name',
@@ -110,6 +110,7 @@ export class Growchief implements INodeType {
 				displayName: 'Email',
 				name: 'email',
 				type: 'string',
+				placeholder: 'name@email.com',
 				displayOptions: {
 					show: {
 						operation: ['startWorkflow'],
@@ -210,4 +211,3 @@ export class Growchief implements INodeType {
 		return [returnData];
 	}
 }
-
